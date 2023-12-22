@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 public interface AnimalPostMapper {
 
     AnimalPostDto toDto(AnimalPost animalPost);
+    AnimalPost toEntity(AnimalPostDto requestDto);
 }

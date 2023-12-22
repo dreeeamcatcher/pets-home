@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AnimalService {
     List<AnimalPostDto> getAll(Pageable pageable);
+    AnimalPostDto save(AnimalPostDto animalPostDto);
 }
