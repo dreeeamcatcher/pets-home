@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnimalPostRepository extends JpaRepository<AnimalPost, Long>, JpaSpecificationExecutor<AnimalPost> {
     Page<AnimalPost> findAll(Pageable pageable);
+    AnimalPost save(AnimalPost animalPost);
 }
