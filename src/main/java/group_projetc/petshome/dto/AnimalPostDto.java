@@ -1,8 +1,11 @@
 package group_projetc.petshome.dto;
 
 import group_projetc.petshome.model.AnimalType;
-import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class AnimalPostDto {
     private Long id;
     private String contactPhone;
