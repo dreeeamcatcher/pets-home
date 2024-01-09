@@ -1,17 +1,17 @@
-package group_projetc.petshome.service;
+package mates.petshome.service;
 
-import group_projetc.petshome.dto.RequestAnimalPostDto;
-import group_projetc.petshome.dto.ResponseAnimalPostDto;
-import group_projetc.petshome.mapper.AnimalPostMapper;
-import group_projetc.petshome.model.AnimalPost;
-import group_projetc.petshome.model.ImageModel;
-import group_projetc.petshome.repository.AnimalPostRepository;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import mates.petshome.dto.RequestAnimalPostDto;
+import mates.petshome.dto.ResponseAnimalPostDto;
+import mates.petshome.mapper.AnimalPostMapper;
+import mates.petshome.model.AnimalPost;
+import mates.petshome.model.ImageModel;
+import mates.petshome.repository.AnimalPostRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,4 +1,4 @@
-package group_projetc.petshome.model;
+package mates.petshome.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

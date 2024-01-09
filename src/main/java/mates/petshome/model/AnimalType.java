@@ -1,4 +1,4 @@
-package group_projetc.petshome.model;
+package mates.petshome.model;
 
 public enum AnimalType {
     CAT, DOG

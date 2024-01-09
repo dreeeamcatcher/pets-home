@@ -1,4 +1,4 @@
-package group_projetc.petshome.dto;
+package mates.petshome.dto;
 
 import lombok.Getter;
 import lombok.Setter;

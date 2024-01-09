@@ -1,10 +1,10 @@
-package group_projetc.petshome.controller;
+package mates.petshome.controller;
 
-import group_projetc.petshome.dto.RequestAnimalPostDto;
-import group_projetc.petshome.dto.ResponseAnimalPostDto;
-import group_projetc.petshome.service.AnimalService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import mates.petshome.dto.RequestAnimalPostDto;
+import mates.petshome.dto.ResponseAnimalPostDto;
+import mates.petshome.service.AnimalService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

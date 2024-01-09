@@ -1,6 +1,6 @@
-package group_projetc.petshome.repository;
+package mates.petshome.repository;
 
-import group_projetc.petshome.model.AnimalPost;
+import mates.petshome.model.AnimalPost;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +13,4 @@ public interface AnimalPostRepository extends JpaRepository<AnimalPost, Long>,
         JpaSpecificationExecutor<AnimalPost> {
     @Query("FROM AnimalPost ap left join fetch ap.postImages im")
     Page<AnimalPost> findAllWithImages(Pageable pageable);
-
-    AnimalPost save(AnimalPost animalPost);
 }

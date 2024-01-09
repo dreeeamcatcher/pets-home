@@ -1,8 +1,8 @@
-package group_projetc.petshome.service;
+package mates.petshome.service;
 
-import group_projetc.petshome.dto.RequestAnimalPostDto;
-import group_projetc.petshome.dto.ResponseAnimalPostDto;
 import java.util.List;
+import mates.petshome.dto.RequestAnimalPostDto;
+import mates.petshome.dto.ResponseAnimalPostDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
