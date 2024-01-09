@@ -10,4 +10,6 @@ public interface AnimalService {
     List<ResponseAnimalPostDto> getAllWithImages(Pageable pageable);
 
     ResponseAnimalPostDto save(RequestAnimalPostDto animalPostDto, MultipartFile[] images);
+
+    ResponseAnimalPostDto getById(Long id);
 }

@@ -25,9 +25,9 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public List<ResponseAnimalPostDto> getAllWithImages(Pageable pageable) {
         return animalPostRepository.findAllWithImages(pageable)
-                                   .stream()
-                                   .map(animalPostMapper::toDto)
-                                   .collect(Collectors.toList());
+                .stream()
+                .map(animalPostMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -42,11 +42,18 @@ public class AnimalServiceImpl implements AnimalService {
         return animalPostMapper.toDto(animalPostRepository.save(animalPost));
     }
 
+    @Override
+    public ResponseAnimalPostDto getById(Long id) {
+        AnimalPost animalPost = animalPostRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Can't find post by id = " + id));
+        return animalPostMapper.toDto(animalPost);
+    }
+
     private Set<ImageModel> processImages(MultipartFile[] images) throws IOException {
         Set<ImageModel> imageSet = new HashSet<>();
         for (MultipartFile image : images) {
             ImageModel imageModel = new ImageModel().setName(image.getOriginalFilename())
-                                                    .setData(image.getBytes());
+                    .setData(image.getBytes());
             imageSet.add(imageModel);
         }
         return imageSet;

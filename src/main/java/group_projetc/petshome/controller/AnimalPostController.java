@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -18,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/animal_post")
+@RequestMapping(value = "/animal_posts")
 public class AnimalPostController {
     private final AnimalService animalService;
 
@@ -34,6 +35,11 @@ public class AnimalPostController {
             @RequestPart("images") MultipartFile[] images
     ) {
         return animalService.save(requestAnimalPostDto, images);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseAnimalPostDto getAnimalPostById(@PathVariable Long id) {
+        return animalService.getById(id);
     }
 
 }
