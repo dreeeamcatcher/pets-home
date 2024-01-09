@@ -1,12 +1,14 @@
 package group_projetc.petshome.mapper;
 
-import group_projetc.petshome.dto.AnimalPostDto;
+import group_projetc.petshome.dto.RequestAnimalPostDto;
+import group_projetc.petshome.dto.ResponseAnimalPostDto;
 import group_projetc.petshome.model.AnimalPost;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(uses = ImageModelMapper.class)
 public interface AnimalPostMapper {
 
-    AnimalPostDto toDto(AnimalPost animalPost);
-    AnimalPost toEntity(AnimalPostDto requestDto);
+    ResponseAnimalPostDto toDto(AnimalPost animalPost);
+
+    AnimalPost toEntity(RequestAnimalPostDto requestDto);
 }
