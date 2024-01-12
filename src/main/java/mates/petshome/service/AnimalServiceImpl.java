@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.mapper.AnimalPostMapper;
+import mates.petshome.model.AdoptAnimalForm;
 import mates.petshome.model.AnimalPost;
 import mates.petshome.model.ImageModel;
 import mates.petshome.repository.AnimalPostRepository;
@@ -16,11 +17,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalPostRepository animalPostRepository;
     private final AnimalPostMapper animalPostMapper;
+    private final EmailService emailService;
 
     @Override
     public List<ResponseAnimalPostDto> getAllWithImages(Pageable pageable) {
@@ -49,6 +51,11 @@ public class AnimalServiceImpl implements AnimalService {
         return animalPostMapper.toDto(animalPost);
     }
 
+    @Override
+    public void adoptAnimal(Long id, AdoptAnimalForm form) {
+        emailService.notifyAboutNewAdoptRequest(id, form);
+    }
+
     private Set<ImageModel> processImages(MultipartFile[] images) throws IOException {
         Set<ImageModel> imageSet = new HashSet<>();
         for (MultipartFile image : images) {
@@ -59,3 +66,6 @@ public class AnimalServiceImpl implements AnimalService {
         return imageSet;
     }
 }
+
+
+
