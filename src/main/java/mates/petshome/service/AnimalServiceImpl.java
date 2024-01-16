@@ -1,10 +1,12 @@
-package group_projetc.petshome.service;
+package mates.petshome.service;
 
-import group_projetc.petshome.dto.AnimalPostDto;
-import group_projetc.petshome.mapper.AnimalPostMapper;
-import group_projetc.petshome.model.AnimalPost;
-import group_projetc.petshome.repository.AnimalPostRepository;
+import mates.petshome.dto.AnimalPostDto;
+import mates.petshome.mapper.AnimalPostMapper;
+import mates.petshome.model.AnimalPost;
+import mates.petshome.repository.AnimalPostRepository;
+import mates.petshome.specification.AnimalPostSpecifications;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -29,4 +31,14 @@ public class AnimalServiceImpl implements AnimalService{
         return animalPostMapper.toDto(animalPostRepository.save(animalPost));
     }
 
+    @Override
+    public Page<AnimalPost> getAllFiltered(int age, String animalType, String gender, String location, Pageable pageable) {
+        return animalPostRepository.findAll(
+                AnimalPostSpecifications.hasAge(age)
+                        .and(AnimalPostSpecifications.hasAnimalType(animalType))
+                        .and(AnimalPostSpecifications.hasGender(gender))
+                        .and(AnimalPostSpecifications.hasLocation(location)),
+                pageable
+        );
+    }
 }

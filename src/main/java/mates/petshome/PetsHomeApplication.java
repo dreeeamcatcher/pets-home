@@ -1,4 +1,4 @@
-package group_projetc.petshome;
+package mates.petshome;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

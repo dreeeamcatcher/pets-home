@@ -1,4 +1,4 @@
-package group_projetc.petshome;
+package mates.petshome;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

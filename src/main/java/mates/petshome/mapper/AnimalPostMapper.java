@@ -1,7 +1,7 @@
-package group_projetc.petshome.mapper;
+package mates.petshome.mapper;
 
-import group_projetc.petshome.dto.AnimalPostDto;
-import group_projetc.petshome.model.AnimalPost;
+import mates.petshome.dto.AnimalPostDto;
+import mates.petshome.model.AnimalPost;
 import org.mapstruct.Mapper;
 
 @Mapper
