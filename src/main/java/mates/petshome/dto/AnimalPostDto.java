@@ -1,6 +1,6 @@
-package group_projetc.petshome.dto;
+package mates.petshome.dto;
 
-import group_projetc.petshome.model.AnimalType;
+import mates.petshome.model.AnimalType;
 import lombok.Getter;
 import lombok.Setter;
 
