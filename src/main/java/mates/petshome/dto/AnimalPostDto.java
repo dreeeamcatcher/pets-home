@@ -1,7 +1,11 @@
-package mates.petshome.dto;
+package group_projetc.petshome.dto;
 
-import mates.petshome.model.AnimalType;
+import group_projetc.petshome.model.AnimalType;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class AnimalPostDto {
     private Long id;
     private String contactPhone;
