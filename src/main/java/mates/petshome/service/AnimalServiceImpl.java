@@ -13,6 +13,8 @@ import mates.petshome.model.AdoptAnimalForm;
 import mates.petshome.model.AnimalPost;
 import mates.petshome.model.ImageModel;
 import mates.petshome.repository.AnimalPostRepository;
+import mates.petshome.specification.AnimalPostSpecifications;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,6 +66,18 @@ public class AnimalServiceImpl implements AnimalService {
             imageSet.add(imageModel);
         }
         return imageSet;
+    }
+
+    @Override
+    public Page<AnimalPost> getAllFiltered(int age, String animalType, String gender,
+                                           String location, Pageable pageable) {
+        return animalPostRepository.findAll(
+                AnimalPostSpecifications.hasAge(age)
+                        .and(AnimalPostSpecifications.hasAnimalType(animalType))
+                        .and(AnimalPostSpecifications.hasGender(gender))
+                        .and(AnimalPostSpecifications.hasLocation(location)),
+                pageable
+        );
     }
 }
 

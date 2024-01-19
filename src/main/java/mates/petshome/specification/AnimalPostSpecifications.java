@@ -9,7 +9,8 @@ public class AnimalPostSpecifications {
     }
 
     public static Specification<AnimalPost> hasAnimalType(String animalType) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("animalType"), animalType);
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("animalType"),
+                animalType);
     }
 
     public static Specification<AnimalPost> hasGender(String gender) {
@@ -17,6 +18,7 @@ public class AnimalPostSpecifications {
     }
 
     public static Specification<AnimalPost> hasLocation(String location) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("location"), location);
+        return (root, query, criteriaBuilder)
+                -> criteriaBuilder.equal(root.get("location"), location);
     }
 }
