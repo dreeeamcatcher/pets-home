@@ -2,6 +2,7 @@ package mates.petshome.controller;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import mates.petshome.dto.AnimalPostSearchParameters;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.model.AdoptAnimalForm;
@@ -50,4 +51,8 @@ public class AnimalPostController {
         animalService.adoptAnimal(id, form);
     }
 
+    @GetMapping("/search")
+    public List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters) {
+        return animalService.search(parameters);
+    }
 }

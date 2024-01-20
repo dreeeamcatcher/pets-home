@@ -1,4 +1,4 @@
-package mates.petshome.repository;
+package mates.petshome.repository.animalpost;
 
 import mates.petshome.model.AnimalPost;
 import org.springframework.data.domain.Page;

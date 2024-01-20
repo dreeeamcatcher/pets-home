@@ -1,4 +1,4 @@
-package mates.petshome.service;
+package mates.petshome.service.impl;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -6,20 +6,26 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import mates.petshome.dto.AnimalPostSearchParameters;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.mapper.AnimalPostMapper;
 import mates.petshome.model.AdoptAnimalForm;
 import mates.petshome.model.AnimalPost;
 import mates.petshome.model.ImageModel;
-import mates.petshome.repository.AnimalPostRepository;
+import mates.petshome.repository.animalpost.AnimalPostRepository;
+import mates.petshome.repository.animalpost.AnimalPostSpecificationBuilder;
+import mates.petshome.service.AnimalService;
+import mates.petshome.service.EmailService;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
+    private final AnimalPostSpecificationBuilder animalPostSpecificationBuilder;
     private final AnimalPostRepository animalPostRepository;
     private final AnimalPostMapper animalPostMapper;
     private final EmailService emailService;
@@ -54,6 +60,15 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public void adoptAnimal(Long id, AdoptAnimalForm form) {
         emailService.notifyAboutNewAdoptRequest(id, form);
+    }
+
+    @Override
+    public List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters) {
+        Specification<AnimalPost> spec = animalPostSpecificationBuilder.build(parameters);
+        return animalPostRepository.findAll(spec)
+                .stream()
+                .map(animalPostMapper::toDto)
+                .toList();
     }
 
     private Set<ImageModel> processImages(MultipartFile[] images) throws IOException {
