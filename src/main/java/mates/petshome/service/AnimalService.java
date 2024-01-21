@@ -1,6 +1,7 @@
 package mates.petshome.service;
 
 import java.util.List;
+import mates.petshome.dto.AnimalPostSearchParameters;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.model.AdoptAnimalForm;
@@ -15,4 +16,6 @@ public interface AnimalService {
     ResponseAnimalPostDto getById(Long id);
 
     void adoptAnimal(Long id, AdoptAnimalForm form);
+
+    List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters);
 }

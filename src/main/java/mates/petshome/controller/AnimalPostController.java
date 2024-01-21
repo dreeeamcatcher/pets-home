@@ -1,7 +1,10 @@
 package mates.petshome.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import mates.petshome.dto.AnimalPostSearchParameters;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.model.AdoptAnimalForm;
@@ -22,14 +25,17 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/animal_posts")
+@Tag(name = "Animal Posts management")
 public class AnimalPostController {
     private final AnimalService animalService;
 
+    @Operation(summary = "Get all available animal posts")
     @GetMapping
     public List<ResponseAnimalPostDto> getAll(Pageable pageable) {
         return animalService.getAllWithImages(pageable);
     }
 
+    @Operation(summary = "Create animal post")
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseAnimalPostDto createAnimalPost(
@@ -39,15 +45,22 @@ public class AnimalPostController {
         return animalService.save(requestAnimalPostDto, images);
     }
 
+    @Operation(summary = "Get animal post by id")
     @GetMapping("/{id}")
     public ResponseAnimalPostDto getAnimalPostById(@PathVariable Long id) {
         return animalService.getById(id);
     }
 
+    @Operation(summary = "Create adopt request for a specific animal post")
     @PostMapping("/{id}/adopt")
     @ResponseStatus(HttpStatus.OK)
     public void adoptAnimal(@PathVariable Long id, @RequestBody AdoptAnimalForm form) {
         animalService.adoptAnimal(id, form);
     }
 
+    @Operation(summary = "Search for animal posts using filters")
+    @GetMapping("/search")
+    public List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters) {
+        return animalService.search(parameters);
+    }
 }
