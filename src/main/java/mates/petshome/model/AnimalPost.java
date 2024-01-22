@@ -26,9 +26,13 @@ public class AnimalPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    private String ownerName;
+    @Column(nullable = false)
+    private String ownerContactNumber;
+    @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private int age;
+    private String age;
     @Column(nullable = false)
     private AnimalType animalType;
     @Column(nullable = false)

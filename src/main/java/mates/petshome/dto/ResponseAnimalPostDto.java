@@ -9,7 +9,7 @@ import mates.petshome.model.AnimalType;
 @Setter
 public class ResponseAnimalPostDto {
     private String name;
-    private int age;
+    private String age;
     private AnimalType animalType;
     private String gender;
     private String contactPhone;
