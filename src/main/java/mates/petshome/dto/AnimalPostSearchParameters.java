@@ -1,5 +1,5 @@
 package mates.petshome.dto;
 
-public record AnimalPostSearchParameters(String[] lowerAge, String[] upperAge, String[] animalType,
+public record AnimalPostSearchParameters(String[] age, String[] animalType,
                                          String[] gender, String[] location) {
 }

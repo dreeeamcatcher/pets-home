@@ -2,7 +2,6 @@ package mates.petshome.repository.animalpost;
 
 import lombok.RequiredArgsConstructor;
 import mates.petshome.model.AnimalPost;
-import mates.petshome.model.AnimalType;
 import mates.petshome.repository.SpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,6 @@ public class AnimalTypeSpecificationProvider implements SpecificationProvider<An
     @Override
     public Specification<AnimalPost> getSpecification(String[] params) {
         return ((root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("animalType"),
-                                      AnimalType.valueOf(params[0].toUpperCase())));
+                criteriaBuilder.equal(root.get("animalType"), params[0].toUpperCase()));
     }
 }

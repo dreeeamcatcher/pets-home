@@ -8,12 +8,11 @@ import mates.petshome.model.AnimalType;
 @Setter
 public class RequestAnimalPostDto {
     private String ownerName;
-    private String ownerContactNumber;
+    private String ownerContactPhone;
     private String name;
     private String age;
     private AnimalType animalType;
     private String gender;
-    private String contactPhone;
-    private String description;
     private String location;
+    private String description;
 }

@@ -16,15 +16,9 @@ public class AnimalPostSpecificationBuilder implements SpecificationBuilder<Anim
     @Override
     public Specification<AnimalPost> build(AnimalPostSearchParameters searchParameters) {
         Specification<AnimalPost> spec = Specification.where(null);
-        if (searchParameters.lowerAge() != null) {
-            spec = spec.and(
-                    animalPostSpecificationProviderManager.getSpecificationProvider("lowerAge")
-                            .getSpecification(searchParameters.lowerAge()));
-        }
-        if (searchParameters.upperAge() != null) {
-            spec = spec.and(
-                    animalPostSpecificationProviderManager.getSpecificationProvider("upperAge")
-                            .getSpecification(searchParameters.upperAge()));
+        if (searchParameters.age() != null) {
+            spec = spec.and(animalPostSpecificationProviderManager.getSpecificationProvider("age")
+                                    .getSpecification(searchParameters.age()));
         }
         if (searchParameters.animalType() != null) {
             spec = spec.and(
