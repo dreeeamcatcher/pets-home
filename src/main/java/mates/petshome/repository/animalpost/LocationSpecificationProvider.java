@@ -19,9 +19,8 @@ public class LocationSpecificationProvider implements SpecificationProvider<Anim
     public Specification<AnimalPost> getSpecification(String[] params) {
         return ((root, query, criteriaBuilder) ->
                 root.get("location").in(Arrays.stream(params)
-                                                .map(p -> p.substring(0, 1)
-                                                        .toUpperCase() + p.substring(1)
-                                                        .toLowerCase())
+                                                .map(p -> p.substring(0, 1).toUpperCase()
+                                                        + p.substring(1).toLowerCase())
                                                 .toArray()));
     }
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.util.Set;
 import lombok.Getter;
@@ -26,15 +27,17 @@ public class AnimalPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    private String ownerName;
+    @Column(nullable = false)
+    private String ownerContactPhone;
+    @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private int age;
+    private String age;
     @Column(nullable = false)
     private AnimalType animalType;
     @Column(nullable = false)
     private String gender;
-    @Column(nullable = false)
-    private String contactPhone;
     @Column(nullable = false)
     private String description;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -46,4 +49,15 @@ public class AnimalPost {
     private boolean isApproved = true;
     @Column(nullable = false)
     private boolean isDeleted;
+
+    @PrePersist
+    private void prePersist() {
+        if (gender != null) {
+            gender = gender.toLowerCase();
+        }
+        if (location != null) {
+            location = location.substring(0, 1).toUpperCase()
+                    + location.substring(1).toLowerCase();
+        }
+    }
 }
