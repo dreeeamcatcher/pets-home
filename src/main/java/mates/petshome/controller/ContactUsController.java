@@ -23,7 +23,7 @@ public class ContactUsController {
 
     @Operation(summary = "Create contact us request")
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public void contactUs(@RequestBody ContactUsForm form) {
         emailService.notifyAboutNewContactUsRequest(form);
     }
