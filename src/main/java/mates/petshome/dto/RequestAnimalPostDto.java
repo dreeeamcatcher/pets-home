@@ -1,11 +1,13 @@
 package mates.petshome.dto;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import mates.petshome.model.AnimalType;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class RequestAnimalPostDto {
     private String ownerName;
     private String ownerContactPhone;
