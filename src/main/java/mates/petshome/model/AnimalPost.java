@@ -37,7 +37,7 @@ public class AnimalPost {
     @Column(nullable = false)
     private AnimalType animalType;
     @Column(nullable = false)
-    private String gender;
+    private Gender gender;
     @Column(nullable = false)
     private String description;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -52,9 +52,6 @@ public class AnimalPost {
 
     @PrePersist
     private void prePersist() {
-        if (gender != null) {
-            gender = gender.toLowerCase();
-        }
         if (location != null) {
             location = location.substring(0, 1).toUpperCase()
                     + location.substring(1).toLowerCase();

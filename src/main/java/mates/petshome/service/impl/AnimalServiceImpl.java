@@ -71,6 +71,11 @@ public class AnimalServiceImpl implements AnimalService {
                 .toList();
     }
 
+    @Override
+    public void deleteAnimalPost(Long id) {
+        animalPostRepository.deleteById(id);
+    }
+
     private Set<ImageModel> processImages(MultipartFile[] images) throws IOException {
         Set<ImageModel> imageSet = new HashSet<>();
         for (MultipartFile image : images) {

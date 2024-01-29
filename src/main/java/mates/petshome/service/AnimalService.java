@@ -18,4 +18,6 @@ public interface AnimalService {
     void adoptAnimal(Long id, AdoptAnimalForm form);
 
     List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters);
+
+    void deleteAnimalPost(Long id);
 }
