@@ -8,6 +8,7 @@ import mates.petshome.model.AnimalType;
 @Getter
 @Setter
 public class ResponseAnimalPostDto {
+    private Long id;
     private String ownerName;
     private String ownerContactPhone;
     private String name;
