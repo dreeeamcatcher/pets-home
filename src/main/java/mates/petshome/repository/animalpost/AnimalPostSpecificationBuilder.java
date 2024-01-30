@@ -20,12 +20,12 @@ public class AnimalPostSpecificationBuilder implements SpecificationBuilder<Anim
             spec = spec.and(animalPostSpecificationProviderManager.getSpecificationProvider("age")
                                     .getSpecification(searchParameters.age()));
         }
-        if (searchParameters.animalType() != null) {
+        if (searchParameters.animalType() != null && searchParameters.animalType().length > 0) {
             spec = spec.and(
                     animalPostSpecificationProviderManager.getSpecificationProvider("animalType")
                             .getSpecification(searchParameters.animalType()));
         }
-        if (searchParameters.gender() != null) {
+        if (searchParameters.gender() != null && searchParameters.gender().length > 0) {
             spec = spec.and(
                     animalPostSpecificationProviderManager.getSpecificationProvider("gender")
                             .getSpecification(searchParameters.gender()));

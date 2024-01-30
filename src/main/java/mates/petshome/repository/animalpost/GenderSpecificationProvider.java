@@ -2,6 +2,7 @@ package mates.petshome.repository.animalpost;
 
 import lombok.RequiredArgsConstructor;
 import mates.petshome.model.AnimalPost;
+import mates.petshome.model.Gender;
 import mates.petshome.repository.SpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,12 @@ public class GenderSpecificationProvider implements SpecificationProvider<Animal
 
     @Override
     public Specification<AnimalPost> getSpecification(String[] params) {
-        return ((root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("gender"), params[0].toLowerCase()));
+        try {
+            Gender gender = Gender.valueOf(params[0].toUpperCase());
+            return ((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("gender"), gender));
+        } catch (IllegalArgumentException e) {
+            return (((root, query, criteriaBuilder) -> criteriaBuilder.and()));
+        }
     }
 }
