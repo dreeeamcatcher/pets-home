@@ -11,6 +11,7 @@ public interface AnimalPostMapper {
 
     ResponseAnimalPostDto toDto(AnimalPost animalPost);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "postImages", ignore = true)
     @Mapping(target = "approved", ignore = true)
     @Mapping(target = "deleted", ignore = true)
