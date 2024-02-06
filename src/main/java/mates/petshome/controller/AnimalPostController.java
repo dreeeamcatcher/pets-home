@@ -58,7 +58,7 @@ public class AnimalPostController {
     @Operation(summary = "Create adopt request for a specific animal post")
     @PostMapping("/{id}/adopt")
     @ResponseStatus(HttpStatus.OK)
-    public void adoptAnimal(@PathVariable Long id, @RequestBody AdoptAnimalForm form) {
+    public void adoptAnimal(@PathVariable Long id, @RequestBody @Valid AdoptAnimalForm form) {
         animalService.adoptAnimal(id, form);
     }
 

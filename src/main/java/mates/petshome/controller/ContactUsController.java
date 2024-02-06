@@ -2,6 +2,7 @@ package mates.petshome.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mates.petshome.model.ContactUsForm;
 import mates.petshome.service.EmailService;
@@ -24,7 +25,7 @@ public class ContactUsController {
     @Operation(summary = "Create contact us request")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void contactUs(@RequestBody ContactUsForm form) {
+    public void contactUs(@RequestBody @Valid ContactUsForm form) {
         emailService.notifyAboutNewContactUsRequest(form);
     }
 }
