@@ -2,6 +2,7 @@ package mates.petshome.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mates.petshome.dto.AnimalPostSearchParameters;
@@ -42,7 +43,7 @@ public class AnimalPostController {
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseAnimalPostDto createAnimalPost(
-            @RequestPart("post") RequestAnimalPostDto requestAnimalPostDto,
+            @RequestPart("post") @Valid RequestAnimalPostDto requestAnimalPostDto,
             @RequestPart("images") MultipartFile[] images
     ) {
         return animalService.save(requestAnimalPostDto, images);
@@ -57,7 +58,7 @@ public class AnimalPostController {
     @Operation(summary = "Create adopt request for a specific animal post")
     @PostMapping("/{id}/adopt")
     @ResponseStatus(HttpStatus.OK)
-    public void adoptAnimal(@PathVariable Long id, @RequestBody AdoptAnimalForm form) {
+    public void adoptAnimal(@PathVariable Long id, @RequestBody @Valid AdoptAnimalForm form) {
         animalService.adoptAnimal(id, form);
     }
 

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import mates.petshome.dto.AnimalPostSearchParameters;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
+import mates.petshome.exception.EntityNotFoundException;
 import mates.petshome.mapper.AnimalPostMapper;
 import mates.petshome.model.AdoptAnimalForm;
 import mates.petshome.model.AnimalPost;
@@ -53,7 +54,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public ResponseAnimalPostDto getById(Long id) {
         AnimalPost animalPost = animalPostRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Can't find post by id = " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Can't find post by id = " + id));
         return animalPostMapper.toDto(animalPost);
     }
 
