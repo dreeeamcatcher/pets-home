@@ -64,8 +64,11 @@ public class AnimalPostController {
 
     @Operation(summary = "Search for animal posts using filters")
     @GetMapping("/search")
-    public List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters) {
-        return animalService.search(parameters);
+    public List<ResponseAnimalPostDto> search(
+            AnimalPostSearchParameters parameters,
+            Pageable pageable
+    ) {
+        return animalService.search(parameters, pageable);
     }
 
     @Operation(summary = "Delete animal post by id")
