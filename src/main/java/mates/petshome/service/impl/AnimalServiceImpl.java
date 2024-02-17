@@ -64,9 +64,12 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters) {
+    public List<ResponseAnimalPostDto> search(
+            AnimalPostSearchParameters parameters,
+            Pageable pageable
+    ) {
         Specification<AnimalPost> spec = animalPostSpecificationBuilder.build(parameters);
-        return animalPostRepository.findAll(spec)
+        return animalPostRepository.findAll(spec, pageable)
                 .stream()
                 .map(animalPostMapper::toDto)
                 .toList();
