@@ -38,7 +38,7 @@ public class AnimalPost {
     private AnimalType animalType;
     @Column(nullable = false)
     private Gender gender;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String description;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "animals_images", joinColumns = {@JoinColumn(name = "animal_id")},
