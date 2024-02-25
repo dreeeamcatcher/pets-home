@@ -3,9 +3,9 @@ package mates.petshome.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mates.petshome.dto.AnimalPostSearchParameters;
+import mates.petshome.dto.PageDto;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.model.AdoptAnimalForm;
@@ -35,7 +35,7 @@ public class AnimalPostController {
 
     @Operation(summary = "Get all available animal posts")
     @GetMapping
-    public List<ResponseAnimalPostDto> getAll(Pageable pageable) {
+    public PageDto getAll(Pageable pageable) {
         return animalService.getAllWithImages(pageable);
     }
 
@@ -64,7 +64,7 @@ public class AnimalPostController {
 
     @Operation(summary = "Search for animal posts using filters")
     @GetMapping("/search")
-    public List<ResponseAnimalPostDto> search(
+    public PageDto search(
             AnimalPostSearchParameters parameters,
             Pageable pageable
     ) {

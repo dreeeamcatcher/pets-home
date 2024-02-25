@@ -1,7 +1,7 @@
 package mates.petshome.service;
 
-import java.util.List;
 import mates.petshome.dto.AnimalPostSearchParameters;
+import mates.petshome.dto.PageDto;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.model.AdoptAnimalForm;
@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface AnimalService {
-    List<ResponseAnimalPostDto> getAllWithImages(Pageable pageable);
+    PageDto getAllWithImages(Pageable pageable);
 
     ResponseAnimalPostDto save(RequestAnimalPostDto animalPostDto, MultipartFile[] images);
 
@@ -17,7 +17,7 @@ public interface AnimalService {
 
     void adoptAnimal(Long id, AdoptAnimalForm form);
 
-    List<ResponseAnimalPostDto> search(AnimalPostSearchParameters parameters, Pageable pageable);
+    PageDto search(AnimalPostSearchParameters parameters, Pageable pageable);
 
     void deleteAnimalPost(Long id);
 }

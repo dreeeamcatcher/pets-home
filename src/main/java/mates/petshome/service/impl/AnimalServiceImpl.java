@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import mates.petshome.dto.AnimalPostSearchParameters;
+import mates.petshome.dto.PageDto;
 import mates.petshome.dto.RequestAnimalPostDto;
 import mates.petshome.dto.ResponseAnimalPostDto;
 import mates.petshome.exception.EntityNotFoundException;
@@ -18,6 +18,7 @@ import mates.petshome.repository.animalpost.AnimalPostRepository;
 import mates.petshome.repository.animalpost.AnimalPostSpecificationBuilder;
 import mates.petshome.service.AnimalService;
 import mates.petshome.service.EmailService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -32,11 +33,13 @@ public class AnimalServiceImpl implements AnimalService {
     private final EmailService emailService;
 
     @Override
-    public List<ResponseAnimalPostDto> getAllWithImages(Pageable pageable) {
-        return animalPostRepository.findAllWithImages(pageable)
-                .stream()
+    public PageDto getAllWithImages(Pageable pageable) {
+        Page<AnimalPost> animalPostPage = animalPostRepository.findAllWithImages(pageable);
+        long totalElements = animalPostPage.getTotalElements();
+        List<ResponseAnimalPostDto> content = animalPostPage.stream()
                 .map(animalPostMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
+        return new PageDto(content, totalElements);
     }
 
     @Override
@@ -64,15 +67,17 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public List<ResponseAnimalPostDto> search(
+    public PageDto search(
             AnimalPostSearchParameters parameters,
             Pageable pageable
     ) {
         Specification<AnimalPost> spec = animalPostSpecificationBuilder.build(parameters);
-        return animalPostRepository.findAll(spec, pageable)
-                .stream()
+        Page<AnimalPost> animalPostPage = animalPostRepository.findAll(spec, pageable);
+        long totalElements = animalPostPage.getTotalElements();
+        List<ResponseAnimalPostDto> content = animalPostPage.stream()
                 .map(animalPostMapper::toDto)
                 .toList();
+        return new PageDto(content, totalElements);
     }
 
     @Override
