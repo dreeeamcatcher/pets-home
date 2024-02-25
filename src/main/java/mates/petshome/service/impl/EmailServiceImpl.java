@@ -52,10 +52,11 @@ public class EmailServiceImpl implements EmailService {
                 .append(" - ")
                 .append(form.getContactPhone())
                 .append(" - ")
-                .append(" wants to adopt a pet.")
+                .append(" wants to adopt a pet: ")
+                .append(System.lineSeparator())
+                .append("https://nataliiahen.github.io/home-for-pets/#/pets/" + id)
                 .append(System.lineSeparator())
                 .append(form.getMessage());
-        //        .append("TODO: ADD URL FOR ADMIN PANEL HERE");
         return builder.toString();
     }
 
