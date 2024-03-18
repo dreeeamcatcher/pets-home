@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnimalPostRepository extends JpaRepository<AnimalPost, Long>,
         JpaSpecificationExecutor<AnimalPost> {
-    @Query("FROM AnimalPost ap left join fetch ap.postImages im")
+    @Query(value = "FROM AnimalPost ap left join fetch ap.postImages im",
+            countQuery = "SELECT COUNT(ap) FROM AnimalPost ap")
     Page<AnimalPost> findAllWithImages(Pageable pageable);
 }
