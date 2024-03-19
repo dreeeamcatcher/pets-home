@@ -73,7 +73,7 @@ public class AnimalServiceImpl implements AnimalService {
     ) {
         Specification<AnimalPost> spec = animalPostSpecificationBuilder.build(parameters);
         Page<AnimalPost> animalPostPage = animalPostRepository.findAll(spec, pageable);
-        long totalElements = animalPostPage.getTotalElements();
+        long totalElements = animalPostRepository.count(spec);
         List<ResponseAnimalPostDto> content = animalPostPage.stream()
                 .map(animalPostMapper::toDto)
                 .toList();
